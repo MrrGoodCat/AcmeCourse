@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
 
 import { AppComponent } from './app.component';
-import { ProductsComponent } from './app/products/products.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
+import { StarComponent } from './shared/star/star.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    ConvertToSpacesPipe,
+    StarComponent
   ],
   imports: [
     BrowserModule,
@@ -18,8 +20,7 @@ import { ProductsListComponent } from './products-list/products-list.component';
   ],
   providers: [],
   bootstrap: [
-    AppComponent,
-    ProductsComponent
+    AppComponent
   ]
 })
 export class AppModule { }
