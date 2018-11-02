@@ -3,7 +3,7 @@ import { IProduct } from './iproduct';
 import { ProductService } from './product.service';
 
 @Component({
-  selector: 'app-products-list',
+  //selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.sass']
 })
@@ -13,6 +13,7 @@ export class ProductsListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
+  errorMessage: string;
 
   private _listFilter: string;
   public get listFilter(): string {
@@ -30,8 +31,14 @@ export class ProductsListComponent implements OnInit {
   }
   
   ngOnInit(){
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe(
+      products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error => this.errorMessage = <any>error
+    );
+    
   }
 
   toggleImage(): void{
