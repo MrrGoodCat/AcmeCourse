@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from './iproduct';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { HttpResponse } from 'selenium-webdriver/http';
+//import { HttpResponse } from 'selenium-webdriver/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class ProductService {
     );
   }
 
-  private handleError(err: HttpResponse) {
+  private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if(err.error instanceof ErrorEvent){
       errorMessage = `An error occured: ${err.error.message}`;
