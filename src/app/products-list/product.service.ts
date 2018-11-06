@@ -3,13 +3,14 @@ import { IProduct } from './iproduct';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-//import { HttpResponse } from 'selenium-webdriver/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+  private products: IProduct[] = [];
+  //errorMessage: string;
   private productUrl = 'api/products/products.json';
 
   getProducts(): Observable<IProduct[]> {
@@ -17,6 +18,23 @@ export class ProductService {
       tap(data => console.log('All' + JSON.stringify(data))),
       catchError(this.handleError)
     );
+  }
+
+  getProductById(id: number): IProduct{
+    
+    this.getProducts().subscribe(
+      products => {
+        this.products = products;
+      }
+    );
+    for(let prod of this.products)
+    {
+      if(prod.productId == id)
+      {
+        return prod;
+      }
+    }
+    return null;
   }
 
   private handleError(err: HttpErrorResponse) {

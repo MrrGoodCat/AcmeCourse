@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './iproduct';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from './product.service';
 
 @Component({
   //selector: 'pm-product-details',
@@ -11,21 +12,12 @@ export class ProductDetailsComponent implements OnInit {
 
   pageTitle: string = 'Product Details';
   product: IProduct;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private prod: ProductService) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
     this.pageTitle += `: ${id}`;
-    this.product = {
-      "productId": 1,
-      "productName": "Leaf Rake",
-      "productCode": "GDN-0011",
-      "releaseDate": "March 19, 2016",
-      "description": "Leaf rake with 48-inch wooden handle.",
-      "price": 19.95,
-      "starRating": 3.2,
-      "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-    }
+    this.product = this.prod.getProductById(id);
   }
 
   onBack(): void{

@@ -1,3 +1,10 @@
-<p>
-  welcome works!
-</p>
+<div class="container">
+  <div class="logo">
+    <fa-icon [icon]="['fab', 'autoprefixer']"></fa-icon>
+  </div>
+  <h2 class="header">Welcome to Acme</h2>
+  <p>Looks like everything is working. Now lets get to know you, connect<br>our portal, and start buy awesome products.</p>
+  <button class="btn btn-primary" [routerLink]="['/products']">
+    Lets get started
+  </button>
+</div>

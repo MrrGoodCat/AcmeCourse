@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StarComponent } from './star/star.component';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule
   ],
   declarations: [
     StarComponent
@@ -13,7 +16,10 @@ import { FormsModule } from '@angular/forms';
   exports: [
     StarComponent,
     CommonModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ]
 })
-export class SharedModule { }
+export class SharedModule { 
+
+}
