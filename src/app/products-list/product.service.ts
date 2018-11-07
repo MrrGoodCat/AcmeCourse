@@ -21,12 +21,6 @@ export class ProductService {
   }
 
   getProductById(id: number): IProduct{
-    
-    this.getProducts().subscribe(
-      products => {
-        this.products = products;
-      }
-    );
     for(let prod of this.products)
     {
       if(prod.productId == id)
@@ -47,5 +41,12 @@ export class ProductService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.getProducts().subscribe(
+      products => {
+        this.products = products;
+      }
+    );
+
+  }
 }
