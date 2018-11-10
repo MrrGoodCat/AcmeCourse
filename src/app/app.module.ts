@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from './shared/shared.module';
+//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+//import {MatButtonModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products-list/product.module';
+
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { ProductModule } from './products-list/product.module';
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'},
     ]),
     ProductModule,
-    //FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    //BrowserAnimationsModule,
+    //MatButtonModule
   ],
   providers: [],
   bootstrap: [

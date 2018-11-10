@@ -1,10 +1,27 @@
-<nav class="navbar navbar-expand navbar-light bg-light">
-  <a class="navbar-brand">{{pageTitle}}</a>
+<!-- <nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand">{{pageTitle}}</a> 
   <ul class="nav nav-pills">
     <li><a class="nav-link" [routerLink]="['/welcome']">Home</a></li>
     <li><a class="nav-link" [routerLink]="['/products']">Product List</a></li>
   </ul>
-</nav>
+</nav> -->
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>{{pageTitle}}</span>
+      
+      <a mat-button [routerLink]="['/welcome']">Home</a>
+      <a mat-button [routerLink]="['/products']">Product List</a>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon">favorite</mat-icon>
+      <mat-icon class="example-icon">delete</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- <mat-tab-group>
+    <mat-tab label="First" [routerLink]="['/welcome']"> Home </mat-tab>
+    <mat-tab label="Second" [routerLink]="['/products']"> Product List </mat-tab>
+  </mat-tab-group> -->
 <div class="container">
   <router-outlet></router-outlet>
 </div>
