@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatTabsModule, MatIconModule, MatToolbarModule} from '@angular/material';
-
+import { NgSemanticModule } from 'ng-semantic';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import {MatButtonModule, MatCheckboxModule, MatTabsModule, MatIconModule, MatToo
     MatCheckboxModule,
     MatTabsModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    NgSemanticModule
   ],
   declarations: [
     StarComponent
@@ -32,7 +33,8 @@ import {MatButtonModule, MatCheckboxModule, MatTabsModule, MatIconModule, MatToo
     MatCheckboxModule,
     MatTabsModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    NgSemanticModule
 
   ]
 })

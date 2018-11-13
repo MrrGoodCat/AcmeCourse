@@ -33,6 +33,7 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "md2": "0.0.29",
+    "ng-semantic": "^1.1.13",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

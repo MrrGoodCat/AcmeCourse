@@ -1,12 +1,12 @@
-<!-- <nav class="navbar navbar-expand navbar-light bg-light">
+<nav class="navbar navbar-expand navbar-light bg-light">
   <a class="navbar-brand">{{pageTitle}}</a> 
   <ul class="nav nav-pills">
     <li><a class="nav-link" [routerLink]="['/welcome']">Home</a></li>
     <li><a class="nav-link" [routerLink]="['/products']">Product List</a></li>
   </ul>
-</nav> -->
+</nav>
 
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>{{pageTitle}}</span>
       
@@ -16,12 +16,21 @@
       <mat-icon class="example-icon">favorite</mat-icon>
       <mat-icon class="example-icon">delete</mat-icon>
     </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->
 
-<!-- <mat-tab-group>
-    <mat-tab label="First" [routerLink]="['/welcome']"> Home </mat-tab>
-    <mat-tab label="Second" [routerLink]="['/products']"> Product List </mat-tab>
-  </mat-tab-group> -->
+
+<!-- <sm-menu title="Angular2" class="inverted teal" logo="/assets/images/semantic.png">
+  <a sm-item *ngFor="let item of items" [icon]="item.icon">{{pageTitle}}</a>
+
+  <sm-menu class="menu right secondary">
+      <a sm-item href="#/elements/menu" 
+          image="http://semantic-ui.com/images/avatar/small/stevie.jpg">Elliot Fu</a>
+      <a sm-item icon="sidebar big"></a>
+  </sm-menu>
+</sm-menu> -->
+
+
+
 <div class="container">
   <router-outlet></router-outlet>
 </div>
