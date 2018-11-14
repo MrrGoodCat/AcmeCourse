@@ -9,12 +9,14 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products-list/product.module';
+//import { CustomerComponent } from './customer/customer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent  
+    WelcomeComponent
+   // CustomerComponent  
   ],
   imports: [
     BrowserModule,

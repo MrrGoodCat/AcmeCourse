@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Sing Up!
+  </div>
+
+  <div class="card-body">
+    <form novalidate (ngSubmit)="save(singupForm)" #singupForm="ngForm">
+
+      <div class="form-group row mb-2">
+        <label for="firstNameId" class="col-md-2 col-form-label">First Name</label>
+        <div class="col-md-8">
+          <input class="form-control" 
+                 type="text" 
+                 id="firstNameId" 
+                 placeholder="First Name (required)" 
+                 required minlength="3" 
+                 [(ngModel)]=customer.firstName 
+                 name="firstName" 
+                 #firstNameVar="ngModel" 
+                 [ngClass]="{'is-invalid': (firstNameVar.touched || firstNameVar.dirty) && !firstNameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="firstNameVar.errors?.required">
+              Please enter your first name.
+            </span>
+            <span *ngIf="firstNameVar.errors?.minlength">
+              The first name must be longer than 3 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
