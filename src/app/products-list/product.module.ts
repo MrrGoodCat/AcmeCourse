@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from '../products/product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerComponent } from '../customer/customer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { CustomerComponent } from '../customer/customer.component';
       
     ]),
     SharedModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ProductsListComponent,
