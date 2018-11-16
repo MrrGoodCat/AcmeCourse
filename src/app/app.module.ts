@@ -9,13 +9,15 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products-list/product.module';
+//import { ProductEditComponent } from './product-edit/product-edit.component';
 //import { CustomerComponent } from './customer/customer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    //ProductEditComponent
    // CustomerComponent  
   ],
   imports: [

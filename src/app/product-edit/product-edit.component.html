@@ -1,0 +1,107 @@
+<div class="card">
+  <div class="card-header">
+    Edit Product:
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="save()"
+          [formGroup]="editForm">
+    
+      <div class="form-group row mb-2">
+        <label for="productNameId" class="col-md-2 col-form-label">Product Name</label>
+        <div class="col-md-8">
+          <input  class="form-control"
+                  type="text"
+                  id="productNameId"
+                  placeholder="Product Name"
+                  formControlName="productName"
+                  [ngClass]="{'is-invalid': (editForm.get('productName').touched || editForm.get('productName').dirty) && !editForm.get('productName').valid }"/>
+          <span class="invalid-feedback">
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="productCodeId" class="col-md-2 col-form-label">Product Code</label>
+        <div class="col-md-8">
+          <input  class="form-control"
+                  type="text"
+                  id="productCodeId"
+                  placeholder="Product Code"
+                  formControlName="productCode"
+                  [ngClass]="{'is-invalid': (editForm.get('productCode').touched || editForm.get('productCode').dirty) && !editForm.get('productCode').valid }"/>
+          <span class="invalid-feedback">
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="starRatingId" class="col-md-2 col-form-label">Star Rating (1-5)</label>
+        <div class="col-md-8">
+          <input  class="form-control"
+                  type="number"
+                  id="starRatingId"
+                  formControlName="starRating"
+                  [ngClass]="{'is-invalid': (editForm.get('starRating').touched || editForm.get('starRating').dirty) && !editForm.get('starRating').valid }"/>
+          <span class="invalid-feedback">
+            <span *ngIf="editForm.get('starRating').errors?.range">
+                Please rate your experience from 1 to 5.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="tagId" class="col-md-2 col-form-label">Tag</label>
+        <div class="col-md-8">
+          <input  class="form-control"
+                  type="text"
+                  id="tagId"
+                  placeholder="Tag"
+                  formControlName="tag"
+                  [ngClass]="{'is-invalid': (editForm.get('tag').touched || editForm.get('tag').dirty) && !editForm.get('tag').valid }"/>
+          <span class="invalid-feedback">
+          </span>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-secondary">Add Tag</button>
+
+      <div class="form-group row mb-2">
+        <label for="descriptionId" class="col-md-2 col-form-label">Description</label>
+        <div class="col-md-8">
+          <textarea rows="3"
+                  class="form-control"
+                  type="field"
+                  id="descriptionId"
+                  formControlName="description"
+                  [ngClass]="{'is-invalid': (editForm.get('description').touched || editForm.get('description').dirty) && !editForm.get('description').valid }"></textarea>
+          <span class="invalid-feedback">
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+            <button class="btn btn-primary mr-3"
+                    type="submit"
+                    style="width:80px"
+                    [title]="customerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                    [disabled]="!customerForm.valid">
+              Save
+            </button>
+            <button class="btn btn-outline-secondary mr-3"
+                    type="button">
+              Cancel
+            </button>
+            <button class="btn btn-outline-danger mr-3"
+                    type="button">
+              Delete
+            </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

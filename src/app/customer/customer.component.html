@@ -170,7 +170,7 @@
                            id="addressType1Id"
                            type="radio"
                            value="home"
-                           name="addressType"> Home
+                           formControlName="addressType"> Home
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -179,7 +179,7 @@
                            id="addressType1Id"
                            type="radio"
                            value="work"
-                           name="addressType"> Work
+                           formControlName="addressType"> Work
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -188,7 +188,7 @@
                            id="addressType1Id"
                            type="radio"
                            value="other"
-                           name="addressType"> Other
+                           formControlName="addressType"> Other
                   </label>
                 </div>
               </div>
@@ -202,7 +202,7 @@
                        id="{{'street1Id' + i}}"
                        type="text"
                        placeholder="Street address"
-                       name="street1">
+                       formControlName="street1">
               </div>
             </div>
 
@@ -214,7 +214,7 @@
                        id="{{'street2Id' + i}}"
                        type="text"
                        placeholder="Street address (second line)"
-                       name="street2">
+                       formControlName="street2">
               </div>
             </div>
 
@@ -226,12 +226,12 @@
                        id="{{'cityId' + i}}"
                        type="text"
                        placeholder="City"
-                       name="city">
+                       formControlName="city">
               </div>
               <div class="col-md-3">
                 <select class="form-control"
                         id="{{'stateId' + i}}"
-                        name="state">
+                        formControlName="state">
                   <option value=""
                           disabled
                           selected
@@ -251,7 +251,7 @@
                        id="{{'zipId' + i}}"
                        type="number"
                        placeholder="Zip Code"
-                       name="zip">
+                       formControlName="zip">
               </div>
             </div>
           </div>

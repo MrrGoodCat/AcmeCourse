@@ -7,12 +7,14 @@ import { ProductDetailGuard } from '../products/product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerComponent } from '../customer/customer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductEditComponent } from '../product-edit/product-edit.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {path: 'products', component: ProductsListComponent},
-      {path: 'edit', component: CustomerComponent},
+      {path: 'edit', component: ProductEditComponent},
+      {path: 'customer', component: CustomerComponent},
       {path: 'products/:id',canActivate: [ProductDetailGuard], component: ProductDetailsComponent}
       
     ]),
@@ -23,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsListComponent,
     ProductDetailsComponent,
     ConvertToSpacesPipe,
-    CustomerComponent
+    CustomerComponent,
+    ProductEditComponent
   ]
 })
 export class ProductModule { }
