@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from './iproduct';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class ProductService {
 
   private products: IProduct[] = [];
   //errorMessage: string;
-  private productUrl = 'api/products/products.json'; //'api/products';
+  private productUrl = 'api/products'; //'api/products/products.json';
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.productUrl).pipe(
@@ -38,13 +38,47 @@ export class ProductService {
     }
     for(let prod of this.products)
     {
-      if(prod.productId == id)
+      if(prod.id == id)
       {
         return prod;
       }
     }
     return null;
   }
+
+  createProduct(product: IProduct):Observable<IProduct>{
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    product.id = null;
+
+    return this.http.post<IProduct>(this.productUrl, product, {headers: headers})
+    .pipe(
+      tap(data => console.log('createProduct: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
+  updateProduct(product: IProduct):Observable<IProduct>{
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const url = `${this.productUrl}/${product.id}`;
+
+    return this.http.put<IProduct>(url, product, {headers: headers})
+    .pipe(
+      tap(() => console.log('updateProduct: ' + product.id)),
+      map(() => product),
+      catchError(this.handleError)
+    );
+  } 
+
+  deleteProduct(id: number): Observable<{}>{
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const url = `${this.productUrl}/${id}`;
+    return this.http.delete<IProduct>(url, {headers: headers})
+    .pipe(
+      tap(() => console.log('deleteProduct: ' + id)),
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
@@ -69,7 +103,7 @@ export class ProductService {
   private initializeProduct(): IProduct {
     // Return an initialized object
     return {
-      productId: 0,
+      id: 0,
       productName: null,
       productCode: null,
       tags: [''],

@@ -4,6 +4,7 @@ import { ProductService } from '../products-list/product.service';
 import { IProduct } from '../products-list/iproduct';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, fromEvent, merge } from 'rxjs';
+import { NumberValidators } from '../shared/number.validator';
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -29,7 +30,7 @@ export class ProductEditComponent implements OnInit {
     this.editForm = this.fb.group({
       productName: ['', [Validators.required, Validators.minLength(3)]],
       productCode: ['', [Validators.required, Validators.minLength(3)]],
-      starRating: ['', [Validators.min(1), Validators.max(5)]],
+      starRating: ['', NumberValidators.range(1,5)],
       tags: this.fb.array([]),
       description: ['']
 
@@ -59,22 +60,47 @@ export class ProductEditComponent implements OnInit {
     this.tags.push(new FormControl());
   }
 
-  getProduct(id: number): void{
-    this.product = this.prod.getProductById(id);
-    this.displayProduct(this.product);
-  }
-
-  // getProduct(id: number): void {
-  //   this.prod.getProduct(id)
-  //     .subscribe(
-  //       (product: IProduct) => this.displayProduct(product),
-  //       (error: any) => this.errorMessage = <any>error
-  //     );
+  // getProduct(id: number): void{
+  //   this.product = this.prod.getProductById(id);
+  //   this.displayProduct(this.product);
   // }
 
-  save(){
+  getProduct(id: number): void {
+    this.prod.getProduct(id)
+      .subscribe(
+        (product: IProduct) => this.displayProduct(product),
+        (error: any) => this.errorMessage = <any>error
+      );
+  }
+
+  saveProduct():void {
     console.log(this.editForm);
     console.log('Saved ' + JSON.stringify(this.editForm.value));
+    if(this.editForm.valid){
+      if(this.editForm.dirty)
+      {
+        const p = { ...this.product, ...this.editForm.value };
+
+        if(p.id === 0)
+        {
+          this.prod.createProduct(p)
+          .subscribe(
+            () => this.onSaveComplete(),
+            (error: any) => this.errorMessage = <any>error
+          );
+        } else {
+          this.prod.updateProduct(p)
+          .subscribe(
+            () => this.onSaveComplete(),
+            (error: any) => this.errorMessage = <any>error
+          );
+        }
+      } else {
+        this.onSaveComplete();
+      }
+    } else {
+      this.errorMessage = 'Please correct the validation errors.'
+    }
   }
 
   displayProduct(product: IProduct): void {
@@ -83,7 +109,7 @@ export class ProductEditComponent implements OnInit {
     }
     this.product = product;
 
-    if (this.product.productId === 0) {
+    if (this.product.id === 0) {
       this.pageTitle = 'Add Product';
     } else {
       this.pageTitle = `Edit Product: ${this.product.productName}`;
@@ -97,5 +123,24 @@ export class ProductEditComponent implements OnInit {
       description: this.product.description
     });
     this.editForm.setControl('tags', this.fb.array(this.product.tags || []));
+  }
+
+  deleteProduct():void {
+    if(this.product.id === 0){
+      this.onSaveComplete();
+    } else {
+      if(confirm(`Really delete the product: ${this.product.productName}?`)){
+        this.prod.deleteProduct(this.product.id)
+        .subscribe(
+          () => this.onSaveComplete(),
+          (error: any) => this.errorMessage = <any>error
+        );
+      } 
+    }
+  }
+
+  onSaveComplete(): void {
+    this.editForm.reset();
+    this.router.navigate(['/products']);
   }
 }
