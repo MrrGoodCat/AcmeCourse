@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CustomerComponent } from '../customer/customer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductEditComponent } from '../product-edit/product-edit.component';
+import { ProductEditGuard } from '../product-edit/product-edit.guard';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ProductEditComponent } from '../product-edit/product-edit.component';
       {path: 'products', component: ProductsListComponent},
       {path: 'customer', component: CustomerComponent},
       {path: 'products/:id',canActivate: [ProductDetailGuard], component: ProductDetailsComponent},
-      {path: 'products/:id/edit', component: ProductEditComponent}
+      {path: 'products/:id/edit', canDeactivate: [ProductEditGuard], component: ProductEditComponent}
       
     ]),
     SharedModule,

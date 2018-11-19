@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { ProductService } from '../products-list/product.service';
 import { IProduct } from '../products-list/iproduct';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, fromEvent, merge } from 'rxjs';
-
-import { Product } from './product';
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -17,6 +15,11 @@ export class ProductEditComponent implements OnInit {
   pageTitle: string;
   errorMessage: string;
   private sub: Subscription;
+
+  get tags(): FormArray {
+    return <FormArray>this.editForm.get('tags');
+  }
+
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
@@ -26,11 +29,13 @@ export class ProductEditComponent implements OnInit {
     this.editForm = this.fb.group({
       productName: ['', [Validators.required, Validators.minLength(3)]],
       productCode: ['', [Validators.required, Validators.minLength(3)]],
-      starRating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
-      tag: ['', [Validators.required, Validators.minLength(3)]],
+      starRating: ['', [Validators.min(1), Validators.max(5)]],
+      tags: this.fb.array([]),
       description: ['']
 
     });
+
+    //Reads the produc Id from the route parameter
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = +params.get('id');
@@ -38,6 +43,20 @@ export class ProductEditComponent implements OnInit {
         this.getProduct(id);
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  buildTags(): FormGroup{
+    return this.fb.group({
+      tag: ''
+    });
+  }
+
+  addTag(): void {
+    this.tags.push(new FormControl());
   }
 
   getProduct(id: number): void{
@@ -77,6 +96,6 @@ export class ProductEditComponent implements OnInit {
       starRating: this.product.starRating,
       description: this.product.description
     });
-    //this.editForm.setControl('tags', this.fb.array(this.product.tags || []));
+    this.editForm.setControl('tags', this.fb.array(this.product.tags || []));
   }
 }

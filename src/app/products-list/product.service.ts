@@ -11,7 +11,7 @@ export class ProductService {
 
   private products: IProduct[] = [];
   //errorMessage: string;
-  private productUrl = 'api/products/products.json';
+  private productUrl = 'api/products/products.json'; //'api/products';
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.productUrl).pipe(
@@ -33,6 +33,9 @@ export class ProductService {
   }
 
   getProductById(id: number): IProduct{
+    if (id === 0) {
+      return this.initializeProduct();
+    }
     for(let prod of this.products)
     {
       if(prod.productId == id)
@@ -53,6 +56,7 @@ export class ProductService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+
   constructor(private http: HttpClient) { 
     this.getProducts().subscribe(
       products => {
@@ -68,7 +72,7 @@ export class ProductService {
       productId: 0,
       productName: null,
       productCode: null,
-      //tags: [''],
+      tags: [''],
       releaseDate: null,
       price: null,
       description: null,
