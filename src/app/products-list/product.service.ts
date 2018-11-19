@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from './iproduct';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -18,6 +18,18 @@ export class ProductService {
       tap(data => console.log('All' + JSON.stringify(data))),
       catchError(this.handleError)
     );
+  }
+
+  getProduct(id: number): Observable<IProduct> {
+    if (id === 0) {
+      return of(this.initializeProduct());
+    }
+    const url = `${this.productUrl}/${id}`;
+    return this.http.get<IProduct>(url)
+      .pipe(
+        tap(data => console.log('getProduct: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
   }
 
   getProductById(id: number): IProduct{
@@ -48,5 +60,20 @@ export class ProductService {
       }
     );
 
+  }
+
+  private initializeProduct(): IProduct {
+    // Return an initialized object
+    return {
+      productId: 0,
+      productName: null,
+      productCode: null,
+      //tags: [''],
+      releaseDate: null,
+      price: null,
+      description: null,
+      starRating: null,
+      imageUrl: null
+    };
   }
 }

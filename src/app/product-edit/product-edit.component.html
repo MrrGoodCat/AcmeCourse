@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    Edit Product:
+    Edit Product: {{product?.productName}}
   </div>
 
   <div class="card-body">
@@ -59,11 +59,8 @@
                   type="text"
                   id="tagId"
                   placeholder="Tag"
-                  formControlName="tag"
-                  [ngClass]="{'is-invalid': (editForm.get('tag').touched || editForm.get('tag').dirty) && !editForm.get('tag').valid }"/>
-          <span class="invalid-feedback">
-          </span>
-        </div>
+                  formControlName="tag"/>
+          </div>
       </div>
 
       <button class="btn btn-outline-secondary">Add Tag</button>
@@ -75,10 +72,8 @@
                   class="form-control"
                   type="field"
                   id="descriptionId"
-                  formControlName="description"
-                  [ngClass]="{'is-invalid': (editForm.get('description').touched || editForm.get('description').dirty) && !editForm.get('description').valid }"></textarea>
-          <span class="invalid-feedback">
-          </span>
+                  formControlName="description">
+          </textarea>
         </div>
       </div>
 

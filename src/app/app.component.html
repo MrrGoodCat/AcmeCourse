@@ -1,37 +1,13 @@
 <nav class="navbar navbar-expand navbar-light bg-light">
   <a class="navbar-brand">{{pageTitle}}</a> 
   <ul class="nav nav-pills">
-    <li><a class="nav-link" [routerLink]="['/welcome']">Home</a></li>
-    <li><a class="nav-link" [routerLink]="['/products']">Product List</a></li>
-    <li><a class="nav-link" [routerLink]="['/edit']">Edit</a></li>
-    <li><a class="nav-link" [routerLink]="['/customer']">Customer</a></li>
+    <li><a class="nav-link" routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/welcome']">Home</a></li>
+    <li><a class="nav-link" routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/products']">Product List</a></li>
+    <!-- <li><a class="nav-link" [routerLink]="['/edit']">Edit</a></li> -->
+    <li><a class="nav-link" routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/products/0/edit']">Add Product</a></li>
+    <li><a class="nav-link" routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/customer']">Customer</a></li>
   </ul>
 </nav>
-
-<!-- <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>{{pageTitle}}</span>
-      
-      <a mat-button [routerLink]="['/welcome']">Home</a>
-      <a mat-button [routerLink]="['/products']">Product List</a>
-      <span class="example-spacer"></span>
-      <mat-icon class="example-icon">favorite</mat-icon>
-      <mat-icon class="example-icon">delete</mat-icon>
-    </mat-toolbar-row>
-</mat-toolbar> -->
-
-
-<!-- <sm-menu title="Angular2" class="inverted teal" logo="/assets/images/semantic.png">
-  <a sm-item *ngFor="let item of items" [icon]="item.icon">{{pageTitle}}</a>
-
-  <sm-menu class="menu right secondary">
-      <a sm-item href="#/elements/menu" 
-          image="http://semantic-ui.com/images/avatar/small/stevie.jpg">Elliot Fu</a>
-      <a sm-item icon="sidebar big"></a>
-  </sm-menu>
-</sm-menu> -->
-
-
 
 <div class="container">
   <router-outlet></router-outlet>
