@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatTabsModule, MatIconModule, MatToolbarModule} from '@angular/material';
+//import { ConvertToDatePipe } from './convert-to-date.pipe';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MatButtonModule, MatCheckboxModule, MatTabsModule, MatIconModule, MatToo
   ],
   declarations: [
     StarComponent
+    //ConvertToDatePipe
   ],
   exports: [
     StarComponent,

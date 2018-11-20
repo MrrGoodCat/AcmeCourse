@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table" *ngIf='users && users.length'>
+        <thead>
+          <tr>
+            <th>
+              <button class="btn btn-primary" (click)='toggleImage()'>
+                {{showImage ? 'Hide' : 'Show'}} Avatar
+              </button>
+            </th>
+            <th>Name</th>
+            <th>Second Name</th>
+            <th>Day of Birth</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let user of users'>
+            <td>
+              <img *ngIf='showImage' [src]='user.avatar' [title]='user.name' [style.width.px]='imageWidth' [style.margin.px]='imageMargin' alt="Image">
+            </td>
+            <td>
+              <a [routerLink]="['/user', user.id]">{{user.name}}</a>
+            </td>
+            <td>{{user.secondName}}</td>
+            <td>{{user.birthday | convertToDate: ' / '}}</td>
+            <td>{{user.phone}}</td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm"
+                      [routerLink]="['/user', user.id, 'edit']">
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+  </div>
+</div>

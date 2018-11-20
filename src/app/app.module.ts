@@ -3,24 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
-//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-//import {MatButtonModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products-list/product.module';
-import { UserComponent } from './user/user.component';
-//import { ProductEditComponent } from './product-edit/product-edit.component';
-//import { CustomerComponent } from './customer/customer.component';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent,
-    UserComponent,
-    //ProductEditComponent
-   // CustomerComponent  
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +24,8 @@ import { UserComponent } from './user/user.component';
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'},
     ]),
     ProductModule,
-    SharedModule,
-    //BrowserAnimationsModule,
-    //MatButtonModule
+    UserModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [

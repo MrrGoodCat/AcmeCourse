@@ -11,26 +11,29 @@ import { ProductEditComponent } from '../product-edit/product-edit.component';
 import { ProductEditGuard } from '../product-edit/product-edit.guard';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProductData } from './product-data';
+//import { UserListComponent } from '../user/user-list.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {path: 'products', component: ProductsListComponent},
       {path: 'customer', component: CustomerComponent},
+      //{path: 'user', component: UserListComponent},
       {path: 'products/:id',canActivate: [ProductDetailGuard], component: ProductDetailsComponent},
       {path: 'products/:id/edit', canDeactivate: [ProductEditGuard], component: ProductEditComponent}
       
     ]),
     SharedModule,
     ReactiveFormsModule,
-    InMemoryWebApiModule.forRoot(ProductData)
+    //InMemoryWebApiModule.forRoot(ProductData)
   ],
   declarations: [
     ProductsListComponent,
     ProductDetailsComponent,
     ConvertToSpacesPipe,
     CustomerComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    //UserListComponent
   ]
 })
 export class ProductModule { }
