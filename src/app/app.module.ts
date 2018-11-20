@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products-list/product.module';
+import { UserComponent } from './user/user.component';
 //import { ProductEditComponent } from './product-edit/product-edit.component';
 //import { CustomerComponent } from './customer/customer.component';
 
@@ -17,6 +18,7 @@ import { ProductModule } from './products-list/product.module';
   declarations: [
     AppComponent,
     WelcomeComponent,
+    UserComponent,
     //ProductEditComponent
    // CustomerComponent  
   ],
