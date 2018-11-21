@@ -13,7 +13,7 @@ export class UserListComponent implements OnInit {
   pageTitle: string = 'List of registered users';
   users: iUser[] = [];
   errorMessage: string;
-  showImage: boolean = false;
+  showImage: boolean = true;
   imageWidth: number = 70;
   imagemargin: number = 2;
   constructor(private userService: UserService) { }

@@ -1,3 +1,27 @@
-<p>
-  user-edit works!
-</p>
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="saveUser()"
+          [formGroup]=userEditForm>
+
+    </form>
+  </div>
+
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="offset-10 col-md-2">
+        <button class="btn btn-primary mr-4"
+                type="submit">
+                Save
+        </button>
+        <button class="btn btn-outline-secondary" [routerLink]="['/user']">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@
 
   <div class="card-body">
     <div class="image-place">
-      <img [src]="user.avatar" alt="avatar">
+      <img [src]="user.avatar" [title]='user.name' alt="avatar">
     </div>
     <div class="info-place container">
       <div class="row mb-5">
@@ -23,6 +23,24 @@
         <fa-icon [icon]="['fas', 'gift']"></fa-icon>
         <h4>{{user.birthday |  convertToDate: ' / '}}</h4>
       </div>
+      <div class="row">
+        <h4>User is interest in:</h4>
+      </div>
+      <div class="row mb-2">
+        <div *ngFor="let hobby of user.hobbies" class="hobby">
+          <a href="#" class="badge badge-success">{{hobby}}</a>
+        </div>
+      </div>
     </div>
+
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-2 offset-10">
+        <button class="btn btn-md btn-outline-secondary mr-3" [routerLink]="['/user']"> <fa-icon [icon]="['fas', 'chevron-left']"></fa-icon> Back </button>
+        <button class="btn btn-md btn-outline-primary" [routerLink]="['/user', user.id, 'edit']"> Edit </button>
+      </div>
+    </div>
+    
   </div>
 </div>
