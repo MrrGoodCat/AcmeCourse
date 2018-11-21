@@ -1,3 +1,28 @@
-<p>
-  user works!
-</p>
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <div class="card-body">
+    <div class="image-place">
+      <img [src]="user.avatar" alt="avatar">
+    </div>
+    <div class="info-place container">
+      <div class="row mb-5">
+        <h2>{{user.name}} {{user.secondName}}</h2>
+      </div>
+      <div class="row mb-2">
+        <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+        <h4><a href="">{{user.email}}</a></h4>
+      </div>
+      <div class="row mb-2">
+        <fa-icon [icon]="['fas', 'phone']"></fa-icon>
+        <h4>{{user.phone}}</h4>
+      </div>
+      <div class="row mb-2">
+        <fa-icon [icon]="['fas', 'gift']"></fa-icon>
+        <h4>{{user.birthday |  convertToDate: ' / '}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
