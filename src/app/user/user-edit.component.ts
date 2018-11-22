@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit',
@@ -8,12 +8,17 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class UserEditComponent implements OnInit {
 
-  editUserForm: FormGroup;
-  pageTitle: string = "Edit user";
+  userEditForm: FormGroup;
+  pageTitle: string;
   
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.userEditForm = this.fb.group({
+      userName: ['', [Validators.required, Validators.minLength(3)]],
+      userSecondName: ['', [Validators.required, Validators.minLength(3)]]
+    });
+    this.pageTitle = "Edit user";
   }
 
   saveUser():void{

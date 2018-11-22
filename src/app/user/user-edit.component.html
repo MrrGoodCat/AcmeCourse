@@ -6,9 +6,56 @@
 
   <div class="card-body">
     <form novalidate
-          (ngSubmit)="saveUser()"
-          [formGroup]=userEditForm>
+          (ngSubmit)="save()"
+          [formGroup]="userEditForm">
 
+      <div class="form-group row mb-2">
+        <label for="userNameId"
+              class="col-md-2 col-form-label">User Name</label>
+        <div class="col-md-8">
+          <input type="text"
+                class="form-control"
+                id="userNameId"
+                placeholder="User Name"
+                formControlname="userName"
+                [ngClass]="{'is-invalid': (userEditForm.get('userName').touched || userEditForm.get('userName').dirty) && !userEditForm.get('userName').valid}" />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+          <label for="userSecondNameId" class="col-md-2 col-form-label">User Second Name</label>
+          <div class="col-md-8">
+            <input type="text"
+                  class="form-control"
+                  id="userSecondNameId"
+                  placeholder="User Second Name"
+                  formControlname="userSecondName"
+                  [ngClass]="{'is-invalid': (userEditForm.get('userSecondName').touched || userEditForm.get('userSecondName').dirty) && !userEditForm.get('userSecondName').valid}"/>
+            <span class="invalid-feedback">
+            </span>
+          </div>
+        </div>
+
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+            <button class="btn btn-primary mr-3"
+                    type="submit"
+                    style="width:80px"
+                    [title]="userEditForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                    [disabled]="!userEditForm.valid">
+              Save
+            </button>
+            <button class="btn btn-outline-secondary mr-3"
+                    type="button">
+              Cancel
+            </button>
+            <button class="btn btn-outline-danger mr-3"
+                    type="button"
+                    (click)="deleteProduct()">
+              Delete
+            </button>
+        </div>
+      </div>
     </form>
   </div>
 
@@ -16,12 +63,19 @@
   <div class="card-footer">
     <div class="row">
       <div class="offset-10 col-md-2">
-        <button class="btn btn-primary mr-4"
+        <button class="btn btn-outline-secondary mr-4" [routerLink]="['/user']">Cancel</button>
+        <!-- <button class="btn btn-primary"
                 type="submit">
                 Save
-        </button>
-        <button class="btn btn-outline-secondary" [routerLink]="['/user']">Cancel</button>
+        </button> -->
+        
       </div>
     </div>
   </div>
 </div>
+
+<br>Dirty: {{ userEditForm.dirty }}
+<br>Touched: {{ userEditForm.touched }}
+<br>Valid: {{ userEditForm.valid }}
+<br>Value: {{ userEditForm.value | json }}
+<br>&nbsp;
