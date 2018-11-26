@@ -16,7 +16,10 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.userEditForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
-      userSecondName: ['', [Validators.required, Validators.minLength(3)]]
+      userSecondName: ['', [Validators.required, Validators.minLength(3)]],
+      userEmail: ['', [Validators.required, Validators.email]],
+      userPhone: ['', [Validators.required, Validators.minLength(12)]],
+      userBDay: ['']
     });
     this.pageTitle = "Edit user";
   }
